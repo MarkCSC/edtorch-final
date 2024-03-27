@@ -1,0 +1,30 @@
+/* src/components/Navbar.css */
+.nav-wrapper {
+    background-color: #005f73;
+    padding: 0 20px;
+  }
+  
+  .brand-logo {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  a:hover {
+    color: #e0fbfc;
+  }
