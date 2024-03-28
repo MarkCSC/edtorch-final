@@ -6,19 +6,40 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import CreateAccount from './components/CreateAccount';
+import Main from './components/Main.js';
+import { AuthProvider } from './hooks/AuthContext.js'; // Import your AuthProvider
+import { RequireAuth } from './hooks/RequireAuth.js'; // Import your RequireAuth component
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/create-account" element={<CreateAccount />} />
-        {/* Other routes can be added here */}
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/create-account" element={<CreateAccount />} />
+          {/* Other routes can be added here */}
+          {/* Protected routes */}
+          <Route
+            path="/home"
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
