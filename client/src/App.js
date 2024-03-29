@@ -5,10 +5,12 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import Exercise from './components/Exercise.js';
 import CreateAccount from './components/CreateAccount';
 import Main from './components/Main.js';
 import { AuthProvider } from './hooks/AuthContext.js'; // Import your AuthProvider
 import { RequireAuth } from './hooks/RequireAuth.js'; // Import your RequireAuth component
+
 
 function App() {
   return (
@@ -34,6 +36,14 @@ function App() {
             element={
               <RequireAuth>
                 <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/exercise"
+            element={
+              <RequireAuth>
+                <Exercise />
               </RequireAuth>
             }
           />

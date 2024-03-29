@@ -1,0 +1,72 @@
+/* Exercise.css */
+
+.exercise {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  padding: 20px;
+  max-width: 700px;
+  margin: 2rem auto; /* Centers the .exercise container */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-title {
+  color: #333333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.exercise-button,
+.exercise-submit-button {
+  background-color: #5cb85c;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: calc(100% - 40px); /* Same width as the textarea */
+  box-sizing: border-box;
+  margin: 1rem auto; /* Centers the button */
+}
+
+.exercise-button:hover,
+.exercise-submit-button:hover {
+  background-color: #4cae4c;
+}
+
+.exercise-button:disabled,
+.exercise-submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.exercise-question,
+.exercise-textarea {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  width: calc(100% - 40px); /* Adjusted for padding and border */
+  box-sizing: border-box;
+  margin: auto; /* Centers the question box and textarea */
+  display: block;
+}
+
+.exercise-textarea {
+  resize: vertical;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

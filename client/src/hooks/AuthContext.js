@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Create a context for the authentication state
@@ -23,12 +23,28 @@ const parseJwt = (token) => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // useEffect hook to check localStprage token
+  useEffect(() => {
+    // On component mount, check if there is a token and set the user state
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedUser = parseJwt(token);
+      if (decodedUser && new Date(decodedUser.exp * 1000) > new Date()) {
+        setUser(decodedUser); // Set the user if token is valid and not expired
+      } else {
+        // If the token is expired, or invalid, remove it and set user to null
+        localStorage.removeItem('token');
+        setUser(null);
+      }
+    }
+  }, []);
+
   // You would replace this with actual logic to check if the user is authenticated
   const isAuthenticated = () => {
+
+    // Decode the token and set the user state
     const token = localStorage.getItem('token');
-    // Here we're just checking if the token is present
-    // maybe we can add auth for teacher later
-    
+
     return token != null;
   };
 

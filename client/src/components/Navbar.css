@@ -1,30 +1,87 @@
-/* src/components/Navbar.css */
+/* Navbar.css */
+
+/* Set font, background color, and padding for the navbar */
+nav {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #2c3e50; /* Dark blue background */
+  padding: 0 20px;
+}
+
+/* Style the nav-wrapper to center the content */
 .nav-wrapper {
-    background-color: #005f73;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+/* Style logo with color and padding */
+.brand-logo {
+  color: #ecf0f1; /* Light color for contrast */
+  text-decoration: none;
+  font-size: 1.8em;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+/* Style the navbar list */
+#nav-mobile {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+/* Style each list item */
+#nav-mobile li {
+  margin-left: 20px;
+}
+
+/* Style the links */
+#nav-mobile li a {
+  color: #ecf0f1; /* Light color for contrast */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Style the links on hover */
+#nav-mobile li a:hover {
+  color: #3498db; /* Slightly lighter blue */
+}
+
+/* Style the logout button to look like a link */
+#nav-mobile li button {
+  background: none;
+  border: none;
+  color: #ecf0f1; /* Same as link color */
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+}
+
+/* Style the logout button on hover */
+#nav-mobile li button:hover {
+  color: #3498db; /* Same as link hover color */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .nav-wrapper {
+    flex-direction: column;
   }
-  
+
+  #nav-mobile {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #nav-mobile li {
+    margin: 10px 0;
+  }
+
   .brand-logo {
-    text-decoration: none;
-    color: #ffffff;
+    margin-bottom: 10px;
   }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #ffffff;
-  }
-  
-  a:hover {
-    color: #e0fbfc;
-  }
+}
