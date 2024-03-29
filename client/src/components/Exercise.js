@@ -11,6 +11,7 @@ function Exercise() {
   const [id, setID] = useState(null);
   const [answer, setAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [checking, setChecking] = useState('');
 
   const auth = useAuth();
 
@@ -31,23 +32,51 @@ function Exercise() {
   const handleAnswerChange = (event) => {
     setAnswer(event.target.value);
   };
-
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true); // Disable the submit button
-    const checkAnswerURL = "http://localhost:8000/api/exercise/check-exercise";
-    
-    axios.post(checkAnswerURL, { id: id, answer: answer })
-      .then(response => {
-        console.log('Answer submitted:', response.data);
-        setIsSubmitting(false); // Enable the submit button
-        setAnswer(''); // Optionally clear the answer after submission
-      })
-      .catch(error => {
-        console.error('Error submitting the answer:', error);
-        setIsSubmitting(false); // Enable the submit button
+    setIsSubmitting(true);
+    setChecking('');
+  
+    try {
+      const response = await fetch("http://localhost:8000/api/exercise/check-exercise", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+          answer: answer,
+        }),
       });
+  
+      if (!response.body) {
+        throw new Error('ReadableStream not yet supported in this browser.');
+      }
+  
+      const reader = response.body.getReader();
+
+      while(true) {
+        const {done, value} = await reader.read();
+  
+        if (done) {
+          break;
+        }
+  
+        // Assuming the chunk is text data
+        const chunkText = new TextDecoder().decode(value);
+        
+        setChecking((checking) => checking + chunkText);
+      }
+
+      setIsSubmitting(false);
+
+    } catch (error) {
+      console.error('Error:', error);
+      setIsSubmitting(false);
+    }
   };
+
 
   const renderLatexText = (latex) => {
     // Split the text into parts and render LaTeX parts with InlineMath
@@ -92,6 +121,7 @@ function Exercise() {
           </form>
         </div>
       )}
+      {checking && (<p>{renderLatexText(checking)}</p>)}
     </div>
   );
 }
