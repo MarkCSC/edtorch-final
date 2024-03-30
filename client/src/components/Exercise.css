@@ -44,7 +44,8 @@
 }
 
 .exercise-question,
-.exercise-textarea {
+.exercise-textarea,
+.exercise-keyboard {
   background-color: #ffffff;
   border: 1px solid #dddddd;
   padding: 1rem;

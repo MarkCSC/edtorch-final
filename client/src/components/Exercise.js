@@ -6,12 +6,18 @@ import './Exercise.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
+import "//unpkg.com/mathlive";
+
+
 function Exercise() {
   const [question, setQuestion] = useState(null);
   const [id, setID] = useState(null);
   const [answer, setAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checking, setChecking] = useState('');
+
+  const [value, setValue] = useState("");
+
 
   const auth = useAuth();
 
@@ -111,6 +117,24 @@ function Exercise() {
               rows="4"
               aria-label="Your Answer"
             ></textarea>
+            <div className=".exercise-keyboard">
+              <math-field style={{
+                backgroundColor: '#ffffff',
+                border: '1px solid #dddddd',
+                padding: '1rem',
+                borderRadius: '4px',
+                marginBottom: '1rem',
+                width: 'calc(100% - 40px)',
+                boxSizing: 'border-box',
+                margin: 'auto',
+                display: 'block'
+              }}
+                onInput={evt => setValue(evt.target.value)}
+              >
+                {value}
+              </math-field>
+            </div>
+            
             <button
               type="submit"
               className="exercise-submit-button"
