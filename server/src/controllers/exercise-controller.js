@@ -1,5 +1,5 @@
 const Question = require('../models/Question'); // Import the Question model
-const OpenAI = require('openai') ;
+const OpenAI = require('openai');
 require('dotenv').config();
 
 const getExercise = async (req, res) => {
@@ -11,7 +11,7 @@ const getExercise = async (req, res) => {
     const random = await Question.aggregate([{ $sample: { size: 1 } }]);
     const question = random[0];
 
-    console.log(question._id);
+    // console.log(question._id);
 
     if (question) {
       res.json({ id: question._id, question: question.question });
@@ -26,15 +26,15 @@ const getExercise = async (req, res) => {
 
 const checkExercise = async (req, res) => {
 
-  console.log(req.body.id);
-  console.log(req.body.answer);
+  // console.log(req.body.id);
+  // console.log(req.body.answer);
 
   const openai = new OpenAI({
     apiKey:process.env.OPENAI_API_KEY
   });
 
   const question = await Question.findById(req.body.id).exec();
-  console.log(question)
+  // console.log(question)
 
   const prompt = { 
     role: "user", 

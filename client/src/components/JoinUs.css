@@ -1,0 +1,23 @@
+/* JoinUs.css */
+.join-us-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f4f4f4; /* white background */
+  color: #000000; /* black text */
+  font-family: 'Arial', sans-serif; /* simple, clean font */
+}
+
+.join-us-header {
+  margin-top: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.join-us-description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}

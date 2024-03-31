@@ -226,9 +226,11 @@ const CreateAccount = () => {
           {errors.grade && <p className="error">{errors.grade}</p>}
         </div>
 				{errors.general && <p className="error">{errors.general}</p>}
-        <button type="submit" disabled={isSubmitting}>
-					{isSubmitting ? 'Creating Account...' : 'Create Account'}
-				</button>
+        <div className="form-group">
+          <button type="submit" disabled={isSubmitting} >
+            {isSubmitting ? 'Creating Account...' : 'Create Account'}
+          </button>
+        </div>
       </form>
     </div>
   );

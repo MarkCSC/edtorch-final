@@ -11,7 +11,7 @@ export const useAuth = () => {
 
 
 // Define a function to parse the JWT and return the user object
-const parseJwt = (token) => {
+export const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split('.')[1]));
   } catch (e) {
@@ -48,15 +48,12 @@ export const AuthProvider = ({ children }) => {
     return token != null;
   };
 
-  const login = async (email, password) => {
+  const login = async (formData) => {
 
     try {
-      const response = await axios.post('http://localhost:8000/api/user/login', {
-        email,
-        password,
-      });
 
-      console.log('Login success:', response.data);
+      const response = await axios.post('http://localhost:8000/api/user/login', {formData: formData});
+
       // Save the token in localStorage or context/state management
       localStorage.setItem('token', response.data.token);
 
@@ -84,6 +81,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getToken = () => {
+    // get the token from localStorage
+    return localStorage.getItem('token');
+  };
+
   const logout = () => {
     // Remove the token from localStorage
     localStorage.removeItem('token');
@@ -100,7 +102,9 @@ export const AuthProvider = ({ children }) => {
     setUser,
     isAuthenticated,
     login,
-    logout
+    logout,
+    getToken,
+    parseJwt,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

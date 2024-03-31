@@ -5,8 +5,6 @@ import {useAuth} from '../hooks/AuthContext.js'
 function Home() {
   const auth = useAuth();
 
-  console.log(auth.user);
-
   // Ensure that auth and auth.user are defined before accessing auth.user.role
   const userRole = auth && auth.user ? auth.user.role : null;
 

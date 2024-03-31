@@ -1,0 +1,95 @@
+/* Main.css */
+.main-container {
+  text-align: center;
+  padding: 80px 20px;
+  background: #f4f4f4; /* Set a white background */
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-header {
+  background: #f4f4f4; /* Set a white background */
+}
+
+.main-header h1 {
+  font-size: 3rem; /* More prominent font size for the welcome message */
+  color: #004085; /* Blue tone for header text */
+  margin-bottom: 0.5rem; /* Adjusted space below h1 */
+}
+
+.main-header p {
+  color: #6c757d; /* Soft blue tone for subtitle */
+  font-size: 1.5rem; /* Slightly larger font size for the subtitle */
+  margin-bottom: 2rem; /* Space below subtitle */
+  max-width: 600px; /* Max width for better readability */
+  line-height: 1.6; /* Adjusted line height for readability */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.button {
+  background-color: #007bff; /* Blue background for buttons */
+  color: white; /* White text for contrast */
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border: none; /* No border for a clean look */
+  border-radius: 10px; /* Slightly rounded corners for buttons */
+  transition: background-color 0.3s, transform 0.2s;
+  text-transform: uppercase; /* Uppercase button text for style */
+  font-weight: 600; /* Font weight for button text */
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); /* Subtle shadow for depth */
+}
+
+.button:hover,
+.button:focus {
+  background-color: #0056b3; /* Darker blue on hover/focus */
+  transform: translateY(-2px); /* Slight lift effect */
+  outline: none; /* Remove outline to maintain the design */
+}
+
+.student-button {
+  background-color: #ffffff; /* White background for student button */
+  color: #000000; /* Black text for contrast */
+  transition: background-color 0.5s, color 0.5s; /* Transition for interactive states */
+}
+
+.teacher-button {
+  background-color: #000000; /* Black background for teacher button */
+  color: #ffffff; /* White text for contrast */
+  transition: background-color 0.5s, color 0.5s; /* Transition for interactive states */
+}
+
+/* Hover states for both buttons */
+.student-button:hover,
+.student-button:focus {
+  background-color: #000000; /* Black background on hover/focus for student button */
+  color: #ffffff; /* White text on hover/focus for contrast */
+}
+
+.teacher-button:hover,
+.teacher-button:focus {
+  background-color: #ffffff; /* White background on hover/focus for teacher button */
+  color: #000000; /* Black text on hover/focus for contrast */
+  
+}
+
+/* Responsive adjustments for button group */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%; /* Full-width buttons on smaller screens */
+    margin: 0.5rem 0; /* Add some vertical margin */
+  }
+}

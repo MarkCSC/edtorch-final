@@ -1,0 +1,54 @@
+/* Profile.css */
+.profile-container {
+  background: #f4f4f4;
+  padding: 20px;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: 30px auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-header h1 {
+  font-size: 24px;
+  color: #222;
+  margin: 0;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  align-items: center; /* Add this line to vertically align grid items */
+}
+
+.profile-info label {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+  display: flex; /* Use flexbox for label alignment */
+  align-items: center; /* Vertically center the label text */
+  justify-content: flex-end; /* Align the text to the right */
+}
+
+.profile-info div {
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex; /* Use flexbox for content alignment */
+  align-items: center; /* Vertically center the content */
+  max-height: 150px; /* Set a fixed maximum height */
+  overflow-x: auto; /* Add hoirzontal scroll if the content is too long */
+}
+
+.error, .loading {
+  text-align: center;
+  font-weight: bold;
+}

@@ -48,16 +48,18 @@ const createUser = async (req, res) => {
 
 const login =  async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { formData } = req.body;
+
+    console.log(formData);
     
     // Find user by email
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: formData.email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
     // Check if the provided password matches the stored hash
-    const isMatch = await bcrypt.compare(password, user.passwordHash);
+    const isMatch = await bcrypt.compare(formData.password, user.passwordHash);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
@@ -72,7 +74,7 @@ const login =  async (req, res) => {
     // Sign token
     jwt.sign(payload, jwtSecretKey, { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
-      res.json({ token: 'Bearer ' + token });
+      res.status(200).json({ token: 'Bearer ' + token });
     });
   } catch (error) {
     console.error(error);

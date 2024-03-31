@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRouter = require('./src/routers/user-router.js'); // Import the router
-const questionRouter = require('./src/routers/question-router.js')
+const questionRouter = require('./src/routers/question-router.js');
+const profileRouter = require('./src/routers/profile-router.js');
 
 const app = express();
 
@@ -15,6 +16,7 @@ require('dotenv').config();
 
 app.use('/api/user', userRouter);
 app.use('/api/exercise', questionRouter);
+app.use('/api/profile', profileRouter);
 
 mongoose.connect( process.env.MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))

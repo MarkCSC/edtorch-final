@@ -23,9 +23,16 @@ function Exercise() {
 
   const handleGetQuestionClick = () => {
     const getExerciseURL = "http://localhost:8000/api/exercise/get-exercise";
-    const user_credential = { username: auth.user.username };
+    const user_credential = { 
+      username: auth.user.username,
+      
+    };
 
-    axios.post(getExerciseURL, user_credential)
+    const header = {headers: {
+      Authorization: auth.getToken()
+    }};
+
+    axios.post(getExerciseURL, user_credential, header)
       .then(response => {
         setID(response.data.id);
         setQuestion(response.data.question);
@@ -49,6 +56,7 @@ function Exercise() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': auth.getToken()
         },
         body: JSON.stringify({
           id: id,

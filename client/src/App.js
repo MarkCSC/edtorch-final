@@ -8,9 +8,10 @@ import Profile from './components/Profile';
 import Exercise from './components/Exercise.js';
 import CreateAccount from './components/CreateAccount';
 import Main from './components/Main.js';
+import JoinUs from './components/JoinUs.js'
 import { AuthProvider } from './hooks/AuthContext.js'; // Import your AuthProvider
 import { RequireAuth } from './hooks/RequireAuth.js'; // Import your RequireAuth component
-
+import './App.css';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/join-us" element={<JoinUs />} />
           {/* Other routes can be added here */}
           {/* Protected routes */}
           <Route
