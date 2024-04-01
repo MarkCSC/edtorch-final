@@ -38,7 +38,10 @@ const checkExercise = async (req, res) => {
 
   const prompt = { 
     role: "user", 
-    content: `Here is a math question: ${question}\nPlease evaluate my answer and teach me like a professional math tutor\n ${req.body.answer}\nnote that all math notations must be in latex format`
+    content: `Here is a math question: ${question}\n
+    Please evaluate my answer: ${req.body.answer}.\n
+    Format of all the equation: inline LATEX format with dollar sign.`
+    //content: "print this is checking"
   }
 
   const stream = await openai.chat.completions.create({
@@ -46,14 +49,58 @@ const checkExercise = async (req, res) => {
       messages: [prompt],
       stream: true,
   });
+
+  for await (const chunk of stream) {
+    res.write(chunk.choices[0]?.delta?.content || "");
+  }
+  
+
+  res.end()
+};
+
+
+const requireHint = async (req, res) => {
+
+  // console.log(req.body.id);
+  // console.log(req.body.answer);
+
+  const openai = new OpenAI({
+    apiKey:process.env.OPENAI_API_KEY
+  });
+
+  const question = await Question.findById(req.body.id).exec();
+  // console.log(question)
+
+  const prompt = [
+    {
+      role: "system", 
+      content: 
+      "You are a secondary school math tutor who is good at explaining concepts with simple words. \
+      You will be given a question, however, You DO NOT discuss a particular question. Instead, teach the concepts behind that needed to solve the question. \
+      For example you want to discuss how to factorization, logarithm works rather than giving solid examples\
+      Try to explain it with a simple manner with the help of bullet points. \
+      Format all equation in your response using inline LATEX format with default '$'"
+    },
+    {
+      role: "user", 
+      content: `Here is a math question: ${question} \n Please teach me.`
+    }
+  ]
+
+  const stream = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: prompt,
+      stream: true,
+  });
+
   for await (const chunk of stream) {
     res.write(chunk.choices[0]?.delta?.content || "");
   }
 
   res.end()
 };
-
 module.exports = {
   getExercise,
-  checkExercise
+  checkExercise,
+  requireHint
 };

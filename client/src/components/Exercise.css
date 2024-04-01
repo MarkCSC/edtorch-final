@@ -17,7 +17,8 @@
 }
 
 .exercise-button,
-.exercise-submit-button {
+.exercise-submit-button,
+.exercise-hint-button {
   background-color: #5cb85c;
   color: #ffffff;
   border: none;
@@ -33,12 +34,14 @@
 }
 
 .exercise-button:hover,
-.exercise-submit-button:hover {
+.exercise-submit-button:hover,
+.exercise-hint-button:hover {
   background-color: #4cae4c;
 }
 
 .exercise-button:disabled,
-.exercise-submit-button:disabled {
+.exercise-submit-button:disabled,
+.exercise-hint-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
@@ -70,4 +73,28 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+.checking-title,
+.hint-title {
+  font-size: 18px; /* Title font size */
+  color: #333333; /* Title color */
+  text-align: center; /* Center the title text */
+  margin-bottom: 0.5rem; /* Space between title and content */
+}
+
+.checking-container,
+.hint-container {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 2rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  color: #333333;
+  text-align: left;
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+  margin: auto;
+  display: block;
 }

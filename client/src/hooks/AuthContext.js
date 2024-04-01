@@ -45,7 +45,18 @@ export const AuthProvider = ({ children }) => {
     // Decode the token and set the user state
     const token = localStorage.getItem('token');
 
-    return token != null;
+    if (token) {
+      const decodedUser = parseJwt(token);
+      if (decodedUser && new Date(decodedUser.exp * 1000) > new Date()) {
+        return true;
+      } else {
+        // If the token is expired, or invalid, remove it and set user to null
+        localStorage.removeItem('token');
+        setUser(null);
+        return false;
+      }
+    }
+    return false;
   };
 
   const login = async (formData) => {
