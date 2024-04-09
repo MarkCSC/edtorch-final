@@ -38,6 +38,8 @@ function Exercise() {
       .then(response => {
         setID(response.data.id);
         setQuestion(response.data.question);
+        setHint('');
+        setChecking('');
       })
       .catch(error => {
         console.error('Error getting the question:', error);
