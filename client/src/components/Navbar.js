@@ -25,6 +25,7 @@ function Navbar() {
               <li><Link to="/profile">Profile</Link></li>
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/exercise">Exercise</Link></li>
+              <li><Link to="/create-homework">homework</Link></li>
               <li>
                 <button className="logout-btn" onClick={handleLogout}>
                   Logout

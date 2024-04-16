@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       const decodedUser = parseJwt(token);
       if (decodedUser && new Date(decodedUser.exp * 1000) > new Date()) {
+        setUser(decodedUser);
         return true;
       } else {
         // If the token is expired, or invalid, remove it and set user to null
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }) => {
 
       const decoded = parseJwt(token);
       if (decoded) {
-        setUser(decoded);
+        setUser(JSON.stringify(decoded));
       }
     } catch (error) {
       // Handle errors: Axios wraps the response error in error.response
