@@ -36,17 +36,26 @@ const checkExercise = async (req, res) => {
   const question = await Question.findById(req.body.id).exec();
   // console.log(question)
 
-  const prompt = { 
-    role: "user", 
-    content: `Here is a math question: ${question}\n
-    Please evaluate my answer: ${req.body.answer}.\n
-    Format of all the equation: inline LATEX format with dollar sign.`
-    //content: "print this is checking"
-  }
+  const prompt = [
+    {
+      role: "system", 
+      content: 
+      "You are a secondary school math teacher who is good at assessing answers \
+      You will be given a math question and an attempt \
+      Determine whether the attempt is correct. If yes, no explanation needed. \
+      Otherwise, give steps and answer on how you would solve the problem.\
+      Format all equation in your response using inline LATEX format with dollar sign"
+    },
+    { 
+      role: "user", 
+      content: `Here is a math question: ${question}\n
+      Please evaluate my answer: ${req.body.answer}.`
+    }
+  ]
 
   const stream = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: [prompt],
+      messages: prompt,
       stream: true,
   });
 
@@ -76,7 +85,8 @@ const requireHint = async (req, res) => {
       role: "system", 
       content: 
       "You are a secondary school math tutor who is good at explaining concepts with simple words. \
-      You will be given a question, however, You DO NOT discuss a particular question. Instead, teach the concepts behind that needed to solve the question. \
+      You will be given a question, however, You DO NOT discuss a particular question. \
+      Instead, teach the concepts behind that needed to solve the question. \
       For example you want to discuss how to factorization, logarithm works rather than giving solid examples\
       Try to explain it with a simple manner with the help of bullet points. \
       Format all equation in your response using inline LATEX format with default '$'"
