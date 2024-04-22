@@ -1,0 +1,81 @@
+/* FinishHomework.css */
+
+.finish-homework {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+    max-width: 700px;
+    margin: 2rem auto; /* Centers the container */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .homework-title {
+    color: #333333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .homework-input,
+  .homework-button {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    display: block;
+    margin: auto;
+  }
+  
+  .homework-button {
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .homework-button:hover {
+    background-color: #4cae4c;
+  }
+  
+  .homework-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .question-container {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    margin: auto;
+  }
+  
+  .question {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+  /* .math-field {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 1rem;
+    border-radius: 4px;
+    display: block;
+    width: calc(100% - 40px);
+    margin-bottom: 1rem;
+    margin: auto;
+  } */
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+  }

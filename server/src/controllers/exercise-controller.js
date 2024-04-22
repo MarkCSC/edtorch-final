@@ -89,7 +89,7 @@ const requireHint = async (req, res) => {
       Instead, teach the concepts behind that needed to solve the question. \
       For example you want to discuss how to factorization, logarithm works rather than giving solid examples\
       Try to explain it with a simple manner with the help of bullet points. \
-      Format all equation in your response using inline LATEX format with default '$'"
+      Format all equation in your response only using inline LATEX format with default '$', do not use block format."
     },
     {
       role: "user", 

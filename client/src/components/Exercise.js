@@ -40,6 +40,7 @@ function Exercise() {
         setQuestion(response.data.question);
         setHint('');
         setChecking('');
+        setValue('');
       })
       .catch(error => {
         console.error('Error getting the question:', error);

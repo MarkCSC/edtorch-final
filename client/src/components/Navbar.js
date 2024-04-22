@@ -13,32 +13,45 @@ function Navbar() {
     navigate('/login'); // Redirect to login after logout
   };
 
+  // Render navigation links based on the user's role
+  const renderLinks = () => {
+    if (!auth.user) {
+      return (
+        <>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/create-account">Create Account</Link></li>
+        </>
+      );
+    } else if (auth.user.role === 'teacher') {
+      return (
+        <>
+          <li><Link to="/">Dashboard</Link></li>
+          <li><Link to="/profile">Profile</Link></li>
+          <li><Link to="/create-homework">Create Homework</Link></li>
+          {/* <li><Link to="/review-assignments">Review Assignments</Link></li> */}
+          <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
+        </>
+      );
+    } else if (auth.user.role === 'student') {
+      return (
+        <>
+          <li><Link to="/">Main Page</Link></li>
+          <li><Link to="/profile">Profile</Link></li>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/exercise">Exercise</Link></li>
+          <li><Link to="/finish-homework">Homework</Link></li>
+          <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
+        </>
+      );
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-wrapper">
         <Link to="/" className="brand-logo">Edtorch</Link>
         <ul className="nav-links">
-          {auth.user ? (
-            // Links to show when user is logged in
-            <>
-              <li><Link to="/">Main Page</Link></li>
-              <li><Link to="/profile">Profile</Link></li>
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/exercise">Exercise</Link></li>
-              <li><Link to="/create-homework">homework</Link></li>
-              <li>
-                <button className="logout-btn" onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
-            </>
-          ) : (
-            // Links to show when no user is logged in
-            <>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/create-account">Create Account</Link></li>
-            </>
-          )}
+          {renderLinks()}
         </ul>
       </div>
     </nav>

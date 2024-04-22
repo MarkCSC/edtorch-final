@@ -88,7 +88,30 @@ const publish = async (req, res) => {
   }
 }
 
+const getHomeworkByCode = async (req, res) => {
+  const { code } = req.params;
+  try {
+    const homework = await Homework.findOne({ code }).populate('questions'); // Assuming you have a 'questions' field that references HomeworkQuestion
+    // console.log(homework);
+    if (!homework) {
+      return res.status(404).json({ message: 'Homework not found' });
+    }
+
+    console.log(homework.questions.map(q => q.content));
+    res.status(200).json({question: homework.questions.map(q => q.content)});
+  } catch (error) {
+    console.error('Error fetching homework:', error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+const submitHomeworkByCode = async (req, res) => {
+  res.status(200).json();
+}
+
 module.exports = {
     createHomework,
-    publish
+    publish,
+    getHomeworkByCode,
+    submitHomeworkByCode
 };
