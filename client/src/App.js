@@ -8,6 +8,7 @@ import Profile from './components/Profile';
 import Exercise from './components/Exercise.js';
 import CreateAccount from './components/CreateAccount';
 import CreateHomework from './components/CreateHomework.js';
+import Dashboard from './components/Dashboard.js';
 import Main from './components/Main.js';
 import JoinUs from './components/JoinUs.js'
 import FinishHomework from './components/FinishHomework.js';
@@ -57,6 +58,14 @@ function App() {
             element={
               <RequireAuth role='teacher'>
                 <CreateHomework />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth role='teacher'>
+                <Dashboard />
               </RequireAuth>
             }
           />

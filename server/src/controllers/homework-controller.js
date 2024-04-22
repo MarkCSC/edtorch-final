@@ -21,6 +21,23 @@ const generateUniqueCode = async () => {
   return newCode;
 };
 
+const getHomeworkCodesByUserId = async (req, res) => {
+  try {
+    const userId = req.auth.id; // Assuming user ID is stored in req.auth after being authenticated
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    const homeworks = await Homework.find({ createdBy: userId }, 'code'); // Select only the 'code' field
+
+    res.status(200).json(homeworks.map(hw => hw.code));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 
 const createHomework = async (req, res) => {
 
@@ -113,5 +130,6 @@ module.exports = {
     createHomework,
     publish,
     getHomeworkByCode,
-    submitHomeworkByCode
+    submitHomeworkByCode,
+    getHomeworkCodesByUserId
 };

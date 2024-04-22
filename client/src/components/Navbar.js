@@ -25,7 +25,7 @@ function Navbar() {
     } else if (auth.user.role === 'teacher') {
       return (
         <>
-          <li><Link to="/">Dashboard</Link></li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/create-homework">Create Homework</Link></li>
           {/* <li><Link to="/review-assignments">Review Assignments</Link></li> */}
