@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
+// const Question = require('../models/Question.js')
 require('dotenv').config();
 
 // Secret key for JWT. In production, use an environment variable to store this securely.
@@ -46,6 +47,15 @@ const createUser = async (req, res) => {
 	}
 }
 
+// const updateQuestion =  async (req, res) => {
+//   const result = await Question.updateMany(
+//     {},
+//     { $set: { elo: 500}}
+//   );
+//   console.log(result);
+//   return res.status(200).json({ message: result });
+// }
+
 const login =  async (req, res) => {
   try {
     const { formData } = req.body;
@@ -84,5 +94,6 @@ const login =  async (req, res) => {
 
 module.exports = {
   createUser,
-  login
+  login,
+  // updateQuestion
 };

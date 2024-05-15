@@ -12,6 +12,14 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   school: { type: String, required: true },
   grade: { type: Number, required: true },
+  elo: { type: [Number],
+    default: 
+    [
+      500, 500, 500, 500, 500, 500, 500, 500, 500, 500,
+      500, 500, 500, 500, 500, 500, 500, 500, 500, 500,
+      500, 500, 500, 500, 500, 500, 500
+    ]
+  },
 
   abilityScores: {
     type: [Number],
